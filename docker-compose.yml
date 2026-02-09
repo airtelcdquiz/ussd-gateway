@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  ussd-gateway:
+    image: openresty/openresty:1.25.3.1-alpine
+    container_name: ussd-gateway
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro 
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
